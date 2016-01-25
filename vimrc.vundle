@@ -1,4 +1,5 @@
-function VundleSetBundle()
+"在这里定义所需要的插件
+function! VundleSetBundle()
 
 	"开始添加自己的插件
 	"vim-scripts repos
@@ -12,13 +13,15 @@ function VundleSetBundle()
 	Bundle 'Lokaltog/vim-easymotion'
 	Bundle 'terryma/vim-multiple-cursors'
 	Bundle 'terryma/vim-expand-region'
+	Bundle 'chenzhiwo/vimrc'
 
 	"non github repos
-	" Bundle 'git://git.wincent.com/command-t.git'
+	"Bundle 'git://git.wincent.com/command-t.git'
 
 endfunction
 
-function Vundleinit()
+"初始化vundle的必要设置
+function! Vundleinit()
 
 	"关闭文件类型检查
 	filetype off
@@ -31,7 +34,7 @@ function Vundleinit()
 endfunction
 
 "程序开始
-"判断vundle是否已经安装，否则安装vundle
+"判断vundle是否已经安装，是则初始化vundle，否则安装vundle
 if isdirectory(expand("~/.vim/bundle/vundle/"))
 
 	call Vundleinit()

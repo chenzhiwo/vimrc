@@ -118,20 +118,20 @@ vmap <F12> <ESC> gg vG= '' zz <CR>
 """"""""""""""""""""""""""""""
 "自定义的函数
 "保存全部文件并且make, 如果出错则调用cw显示错误信息。
-function Make()
+function! Make()
 	exec "wa"
 	:make
 	:cw
 endfunction
 
 "保存全部文件并且make exec
-function MakeExec()
+function! MakeExec()
 	exec "wa"
 	:make exec
 endfunction
 
 "运行当前正在编辑的文件
-function Exec()
+function! Exec()
 	exec "w"
 	:!./%
 endfunction
