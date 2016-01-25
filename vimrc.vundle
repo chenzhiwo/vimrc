@@ -1,0 +1,50 @@
+function VundleSetBundle()
+
+	"开始添加自己的插件
+	"vim-scripts repos
+	Bundle 'a.vim'
+	Bundle 'c.vim'
+	Bundle 'taglist.vim'
+	Bundle 'minibufexpl.vim'
+
+	"no vim-scripts repos
+	Bundle 'gmarik/vundle'
+	Bundle 'Lokaltog/vim-easymotion'
+	Bundle 'terryma/vim-multiple-cursors'
+	Bundle 'terryma/vim-expand-region'
+
+	"non github repos
+	" Bundle 'git://git.wincent.com/command-t.git'
+
+endfunction
+
+function Vundleinit()
+
+	"关闭文件类型检查
+	filetype off
+	"添加runtime path运行时路径
+	set rtp+=~/.vim/bundle/vundle/
+	"启动vundle
+	call vundle#rc()
+	call VundleSetBundle()
+
+endfunction
+
+"程序开始
+"判断vundle是否已经安装，否则安装vundle
+if isdirectory(expand("~/.vim/bundle/vundle/"))
+
+	call Vundleinit()
+
+else
+
+	echo "vundle未安装,安装中……"
+	!git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+
+	"初始化vundle中……
+	call Vundleinit()
+
+	"安装插件中……
+	PluginInstall	
+
+endif
