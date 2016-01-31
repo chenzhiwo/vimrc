@@ -84,8 +84,8 @@ let mapleader = ";"
 
 "普通键区映射
 "Enter代替G，Backspace代替gg
-nnoremap <CR> G
-nnoremap <BS> gg
+"nnoremap <CR> G
+"nnoremap <BS> gg
 
 "F键区绑定
 "<F4>执行当前正在编辑的文件
@@ -109,9 +109,9 @@ imap <F8> <ESC> :TlistToggle <CR>
 vmap <F8> <ESC> :TlistToggle <CR>
 
 "<F12>缩进整个文件
-map <F12> <ESC> gg vG= '' zz<CR>
-imap <F12> <ESC> gg vG= '' zz <CR>
-vmap <F12> <ESC> gg vG= '' zz <CR>
+map <F12> <ESC> gg vG= '' zz
+imap <F12> <ESC> gg vG= '' zz 
+vmap <F12> <ESC> gg vG= '' zz 
 
 
 
