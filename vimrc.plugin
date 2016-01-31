@@ -10,7 +10,14 @@
 if filereadable("tags")
 	set tags+=tags
 endif
-
+"不同时显示多个文件的tag，只显示当前文件的
+"let Tlist_Show_One_File = 1            
+"如果taglist窗口是最后一个窗口，则退出vim
+let Tlist_Exit_OnlyWindow = 1          
+"折叠除了当前文件以外的文件
+let Tlist_File_Fold_Auto_Close = 1
+"打开taglist时自动获取光标
+let Tlist_GainFocus_On_ToggleOpen = 1
 
 "cscope配置，如果当前目录存在cscope.out文件的话则自动添加到cscope数据库
 if filereadable("cscope.out")
