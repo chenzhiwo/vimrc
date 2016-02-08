@@ -42,7 +42,7 @@ if isdirectory(expand("~/.vim/bundle/vundle/"))
 else
 
 	echo "vundle未安装,安装中……"
-	!git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+	!git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 
 	"初始化vundle中……
 	call Vundleinit()
