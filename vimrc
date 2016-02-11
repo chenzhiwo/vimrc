@@ -88,12 +88,18 @@ let mapleader = ";"
 "nnoremap <BS> gg
 
 "F键区绑定
-"<F4>执行当前正在编辑的文件
-map  <F4> <ESC> :call Exec() <CR>
-imap <F4> <ESC> :call Exec() <CR>
-vmap <F4> <ESC> :call Exec() <CR>
+"<F3>执行当前正在编辑的文件
+map  <F3> <ESC> :call Exec() <CR>
+imap <F3> <ESC> :call Exec() <CR>
+vmap <F3> <ESC> :call Exec() <CR>
 
-"<F5>执行make，并且显示cw错误列表
+"<F4>打开/关闭qucikfix窗口
+map	 <F4> <ESC> :call CWToggle() <CR>
+imap <F4> <ESC> :call CWToggle() <CR>
+vmap <F4> <ESC> :call CWToggle() <CR>
+
+
+"<F5>保存所有的文件以后执行make
 map  <F5> <ESC> :call Make() <CR>
 imap <F5> <ESC> :call Make() <CR>
 vmap <F5> <ESC> :call Make() <CR>
@@ -103,25 +109,34 @@ map  <F6> <ESC> :call MakeExec() <CR>
 imap <F6> <ESC> :call MakeExec() <CR>
 vmap <F6> <ESC> :call MakeExec() <CR>
 
+"<F7>执行make debug进行调试
+map  <F7> <ESC> :make debug <CR>
+imap <F7> <ESC> :make debug <CR>
+vmap <F7> <ESC> :make debug <CR>
+
 "<F8>显示taglist
 map  <F8> <ESC> :TlistToggle <CR>
 imap <F8> <ESC> :TlistToggle <CR>
 vmap <F8> <ESC> :TlistToggle <CR>
 
-"<F12>缩进整个文件
-map <F12> <ESC> gg vG= '' zz
-imap <F12> <ESC> gg vG= '' zz 
-vmap <F12> <ESC> gg vG= '' zz 
 
+"<F12>缩进当前光标所在{}之间的代码
+map  <F12> <ESC> =a{ '' zz
+imap <F12> <ESC> =a{ '' zz
+vmap <F12> <ESC> =a{ '' zz
+
+"<Leader> <F12> 缩进当前文本
+map  <Leader><F12> <ESC> gg=G '' zz
+imap <Leader><F12> <ESC> gg=G '' zz
+vmap <Leader><F12> <ESC> gg=G '' zz
 
 
 """"""""""""""""""""""""""""""
 "自定义的函数
-"保存全部文件并且make, 如果出错则调用cw显示错误信息。
+"保存全部文件并且make
 function! Make()
 	exec "wa"
 	:make
-	:cw
 endfunction
 
 "保存全部文件并且make exec
@@ -132,14 +147,25 @@ endfunction
 
 "运行当前正在编辑的文件
 function! Exec()
-	exec "w"
+	exec "wa"
 	:!./%
+endfunction
+
+"toggle cw
+let g:CWToggle = 0
+function! CWToggle()
+	if g:CWToggle == 0
+		:copen
+		let g:CWToggle = 1
+	else
+		:cclose
+		let g:CWToggle = 0
+	endif
 endfunction
 
 
 
-
-"最后如果配置文件存在则加载插件配置文件
+"最后如果插件配置文件存在则加载插件配置文件
 if filereadable(expand("~/.vimrc.plugin"))
 	source ~/.vimrc.plugin
 endif
