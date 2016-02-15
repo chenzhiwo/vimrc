@@ -173,6 +173,8 @@ function! CWToggle()
 endfunction
 
 
+"自定义的命令
+command! DeleteEOLSpace :%s/\s\+$//g
 
 "最后如果插件配置文件存在则加载插件配置文件
 if filereadable(expand("~/.vimrc.plugin"))
