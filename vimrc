@@ -6,29 +6,29 @@ endif
 
 
 "关闭vi兼容模式
-set nocompatible 
+set nocompatible
 "检测文件类型，与vundle不兼容
-"filetype on                  
+"filetype on
 "针对不同的文件类型采用不同的缩进格式
-filetype indent on   
+filetype indent on
 "允许文件类型插件
-filetype plugin on           
+filetype plugin on
 "启动根据文件类型自动补全
-filetype plugin indent on    
+filetype plugin indent on
 
 
 "设置颜色方案
 colorscheme evening
 "开启代码高亮
-syntax enable 
+syntax enable
 "打开高亮
-syntax on 
+syntax on
 
 
 "显示行号
 set nu
 "允许代码折叠
-set foldenable 
+set foldenable
 "代码折叠方式为手动折叠，使用zm,zr命令
 set foldmethod=manual
 "设置补全窗口的格式，就算只有一个匹配都显示一个弹出菜单，只匹配最长的文本
@@ -70,10 +70,10 @@ set hlsearch
 "搜索时忽略大小写
 set ignorecase
 
-"行高亮 
-"set cursorline 
-"列高亮，与函数列表有冲突 
-"set cursorcolumn 
+"行高亮
+"set cursorline
+"列高亮，与函数列表有冲突
+"set cursorcolumn
 
 
 
@@ -87,48 +87,57 @@ let mapleader = ";"
 "nnoremap <CR> G
 "nnoremap <BS> gg
 
+"让光标上下移动的时候居中
+nnoremap j jzz
+nnoremap k kzz
+
+"让上下翻页以后光标居中
+nnoremap <C-F> <C-F>zz
+nnoremap <C-B> <C-B>zz
+
+
 "F键区绑定
 "<F3>执行当前正在编辑的文件
-map  <F3> <ESC> :call Exec() <CR>
-imap <F3> <ESC> :call Exec() <CR>
-vmap <F3> <ESC> :call Exec() <CR>
+nnoremap <F3> <C-[> :call Exec() <CR>
+inoremap <F3> <C-[> :call Exec() <CR>
+vnoremap <F3> <C-[> :call Exec() <CR>
 
 "<F4>打开/关闭qucikfix窗口
-map	 <F4> <ESC> :call CWToggle() <CR>
-imap <F4> <ESC> :call CWToggle() <CR>
-vmap <F4> <ESC> :call CWToggle() <CR>
+nnoremap <F4> <C-[> :call CWToggle() <CR>
+inoremap <F4> <C-[> :call CWToggle() <CR>
+vnoremap <F4> <C-[> :call CWToggle() <CR>
 
 
 "<F5>保存所有的文件以后执行make
-map  <F5> <ESC> :call Make() <CR>
-imap <F5> <ESC> :call Make() <CR>
-vmap <F5> <ESC> :call Make() <CR>
+nnoremap <F5> <C-[> :call Make() <CR>
+inoremap <F5> <C-[> :call Make() <CR>
+vnoremap <F5> <C-[> :call Make() <CR>
 
 "<F6>执行make exec
-map  <F6> <ESC> :call MakeExec() <CR>
-imap <F6> <ESC> :call MakeExec() <CR>
-vmap <F6> <ESC> :call MakeExec() <CR>
+nnoremap <F6> <C-[> :call MakeExec() <CR>
+inoremap <F6> <C-[> :call MakeExec() <CR>
+vnoremap <F6> <C-[> :call MakeExec() <CR>
 
 "<F7>执行make debug进行调试
-map  <F7> <ESC> :make debug <CR>
-imap <F7> <ESC> :make debug <CR>
-vmap <F7> <ESC> :make debug <CR>
+nnoremap <F7> <C-[> :make debug <CR>
+inoremap <F7> <C-[> :make debug <CR>
+vnoremap <F7> <C-[> :make debug <CR>
 
 "<F8>显示taglist
-map  <F8> <ESC> :TlistToggle <CR>
-imap <F8> <ESC> :TlistToggle <CR>
-vmap <F8> <ESC> :TlistToggle <CR>
+nnoremap <F8> <C-[> :TlistToggle <CR>
+inoremap <F8> <C-[> :TlistToggle <CR>
+vnoremap <F8> <C-[> :TlistToggle <CR>
 
 
 "<F12>缩进当前光标所在{}之间的代码
-map  <F12> <ESC> =a{ '' zz
-imap <F12> <ESC> =a{ '' zz
-vmap <F12> <ESC> =a{ '' zz
+nnoremap <F12> <C-[> =a{ '' zz
+inoremap <F12> <C-[> =a{ '' zz
+vnoremap <F12> <C-[> =a{ '' zz
 
 "<Leader> <F12> 缩进当前文本
-map  <Leader><F12> <ESC> gg=G '' zz
-imap <Leader><F12> <ESC> gg=G '' zz
-vmap <Leader><F12> <ESC> gg=G '' zz
+nnoremap <Leader><F12> <C-[> gg=G '' zz
+inoremap <Leader><F12> <C-[> gg=G '' zz
+vnoremap <Leader><F12> <C-[> gg=G '' zz
 
 
 """"""""""""""""""""""""""""""
@@ -155,10 +164,10 @@ endfunction
 let g:CWToggle = 0
 function! CWToggle()
 	if g:CWToggle == 0
-		:copen
+		exec "copen"
 		let g:CWToggle = 1
 	else
-		:cclose
+		exec "cclose"
 		let g:CWToggle = 0
 	endif
 endfunction
