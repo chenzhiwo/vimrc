@@ -18,7 +18,7 @@ filetype plugin indent on
 
 
 "设置颜色方案
-colorscheme evening
+colorscheme elflord
 "开启代码高亮
 syntax enable
 "打开高亮
@@ -50,13 +50,13 @@ set noexpandtab
 set smarttab
 
 "设置vim程序使用的编码方式
-set enc=utf-8
+set enc=gbk
 "设置文件编码方式
-set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936
+set fencs=utf-8,gb18030,gbk,gb2312,ucs-bom,shift-jis,cp936
 "设置菜单语言
-set langmenu=en_US.UTF-8
+set langmenu=zh_CN.UTF-8
 "设置帮助文档语言
-set helplang=en
+set helplang=zh
 
 "文件在外部被修改时即时更新
 set autoread
@@ -69,6 +69,9 @@ set incsearch
 set hlsearch
 "搜索时忽略大小写
 set ignorecase
+
+"设置默认窗口大小
+set lines=44 columns=135
 
 "行高亮
 "set cursorline
@@ -119,9 +122,9 @@ inoremap <F6> <C-[> :call MakeExec() <CR>
 vnoremap <F6> <C-[> :call MakeExec() <CR>
 
 "<F7>执行make debug进行调试
-nnoremap <F7> <C-[> :make debug <CR>
-inoremap <F7> <C-[> :make debug <CR>
-vnoremap <F7> <C-[> :make debug <CR>
+nnoremap <F7> <C-[> :call Debug() <CR>
+inoremap <F7> <C-[> :call Debug() <CR>
+vnoremap <F7> <C-[> :call Debug() <CR>
 
 "<F8>显示taglist
 nnoremap <F8> <C-[> :TlistToggle <CR>
@@ -145,20 +148,28 @@ vnoremap <Leader><F12> <C-[> gg=G '' zz
 "保存全部文件并且make
 function! Make()
 	exec "wa"
-	:make
+	:!gcc ./% -o ./%:t:r
 endfunction
 
 "保存全部文件并且make exec
 function! MakeExec()
 	exec "wa"
-	:make exec
+	call Make()
+	:!./%:t:r
 endfunction
 
 "运行当前正在编辑的文件
 function! Exec()
 	exec "wa"
-	:!./%
+	:./!%
 endfunction
+
+"使用gdb来调试当前文件
+function! Debug()
+	:!gcc ./% -o ./%:t:r -g
+	!gdb ./%:t:r
+endfunction
+
 
 "toggle cw
 let g:CWToggle = 0
