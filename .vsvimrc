@@ -83,7 +83,7 @@ set lines=44 columns=135
 """"""""""""""""""""""""""""""
 "基本键绑定
 "Leader键;
-let mapleader = ";"
+"let mapleader = ";"
 
 "普通键区映射
 "Enter代替G，Backspace代替gg
@@ -148,26 +148,26 @@ vnoremap <Leader><F12> <C-[> gg=G '' zz
 "保存全部文件并且make
 function! Make()
 	exec "wa"
-	:!gcc ./% -o ./%:t:r
+	:!gcc % -o %:t:r
 endfunction
 
 "保存全部文件并且make exec
 function! MakeExec()
 	exec "wa"
 	call Make()
-	:!./%:t:r
+	:!%:t:r.exe
 endfunction
 
 "运行当前正在编辑的文件
 function! Exec()
 	exec "wa"
-	:./!%
+	:!%
 endfunction
 
 "使用gdb来调试当前文件
 function! Debug()
-	:!gcc ./% -o ./%:t:r -g
-	!gdb ./%:t:r
+	:!gcc % -o %:t:r -g
+	!gdb %:t:r.exe
 endfunction
 
 
