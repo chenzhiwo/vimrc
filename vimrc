@@ -18,7 +18,7 @@ filetype plugin indent on
 
 
 "设置颜色方案
-colorscheme evening
+colorscheme elflord
 "开启代码高亮
 syntax enable
 "打开高亮
