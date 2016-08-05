@@ -13,6 +13,8 @@ function! VundleSetBundle()
 	Bundle 'Lokaltog/vim-easymotion'
 	Bundle 'terryma/vim-multiple-cursors'
 	Bundle 'terryma/vim-expand-region'
+	Bundle 'taketwo/vim-ros'
+	Bundle 'Valloric/YouCompleteMe'
 	Bundle 'chenzhiwo/vimrc'
 
 	"non github repos

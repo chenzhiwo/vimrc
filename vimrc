@@ -145,7 +145,7 @@ vnoremap <Leader><F12> <C-[> gg=G '' zz
 "保存全部文件并且make
 function! Make()
 	exec "wa"
-	:make
+	:!catkin_make -C ~/ros_ws/
 endfunction
 
 "保存全部文件并且make exec
