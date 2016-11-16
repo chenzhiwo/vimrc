@@ -16,6 +16,7 @@ function! VundleSetBundle()
 	Bundle 'taketwo/vim-ros'
 	Bundle 'Valloric/YouCompleteMe'
 	Bundle 'chenzhiwo/vimrc'
+	Bundle 'chenzhiwo/ycm-extra-conf-ros'
 
 	"non github repos
 	"Bundle 'git://git.wincent.com/command-t.git'
